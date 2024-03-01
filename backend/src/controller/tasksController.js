@@ -20,8 +20,9 @@ const tasksList = async (req, res) => {
 const addTask = async (req, res) => {
     try{
         
-        
-        const task = { id: tasks.length + 1, ...req.body };
+        const data = req.body;
+
+        const task = { id: tasks.length+1, title:data.title };
         tasks.push(task);
         // const title = req.body.title;
         // const tasks = new TaskModel({
@@ -67,7 +68,11 @@ const deleteTask = async (req, res) => {
         if (index >=0) {
             // await TaskModel.updateOne({ _id: id }, { $set: { isDeleted: false } });
             tasks = tasks.filter(task => task.id !== parseInt(id));
-
+            tasks.forEach((task, index) => {
+               
+                task.id = index + 1;
+            });
+            console.log(tasks);
             return res.status(201).send({ message: "Task delete successfully", data: tasks })
         } else {
             return res.status(404).send({ message: 'Task not found' });

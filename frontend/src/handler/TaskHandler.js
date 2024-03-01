@@ -13,7 +13,7 @@ const fetchTasks = async () => {
 
 const addTask = async (body) => {
     try {
-
+        console.log(body);
         const response = await axios.post('http://localhost:3001/tasks/add' , body);
         return response;
     } catch (e) {

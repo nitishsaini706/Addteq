@@ -67,8 +67,9 @@ export default function TaskList() {
     };
 
     // Function to add a new task
-    const add = async () => {
-        if (!updateInput.trim()) return;
+    const add = async (e) => {
+        e.preventDefault();
+        if (!updateInput.trim()) {alert("please add title");return};
         const newTask = {
             title: updateInput,
         };
